@@ -9,6 +9,9 @@ jobs:
       - checkout
       # Install dependencies
       - run:
+          name: npm update
+          command: npm i -g
+      - run:
           name: Install Dependencies
           command: npm install --force
       # Run Cypress tests
