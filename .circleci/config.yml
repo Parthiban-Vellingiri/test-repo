@@ -7,6 +7,12 @@ jobs:
 
     steps:
       - checkout
+
+      # Set up Node.js environment
+      - run:
+          name: Setup Node.js
+          command: nvm install 12
+          
       # Install dependencies
       - run:
           name: Install Dependencies
