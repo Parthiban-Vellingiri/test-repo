@@ -1,6 +1,8 @@
 version: 2.1
 jobs:
   build:
+    environment:
+      SSH_PASSPHRASE: "Test@12345"
     docker:
       - image: cypress/browsers:chrome67
     working_directory: ~/project
