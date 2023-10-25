@@ -3,22 +3,17 @@ jobs:
   build:
     docker:
       - image: cypress/browsers:chrome67
+    working_directory: ~/project
+
     steps:
       - checkout
-      - run:
-          name: Setup SSH Key
-          command: |
-            mkdir -p /root/.ssh
-            echo "$SSH_PRIVATE_KEY" > /root/.ssh/id_rsa
-            chmod 600 /root/.ssh/id_rsa
-            ssh-keyscan github.com >> /root/.ssh/known_hosts
-          environment:
-            SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      # Install dependencies
       - run:
           name: Install Dependencies
           command: npm install
 
+      # Run Cypress tests
       - run:
           name: Run Cypress Tests
           command: npm run cypress:run
