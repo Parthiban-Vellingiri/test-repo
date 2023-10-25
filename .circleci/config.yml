@@ -1,24 +1,24 @@
 version: 2.1
 jobs:
   build:
-    environment:
-      SSH_PASSPHRASE: "Test@12345"
     docker:
       - image: cypress/browsers:chrome67
-    working_directory: ~/project
-
     steps:
       - checkout
+      - run:
+          name: Setup SSH Key
+          command: |
+            mkdir -p /root/.ssh
+            echo "$SSH_PRIVATE_KEY" > /root/.ssh/id_rsa
+            chmod 600 /root/.ssh/id_rsa
+            ssh-keyscan github.com >> /root/.ssh/known_hosts
+          environment:
+            SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      # Install dependencies
       - run:
           name: Install Dependencies
           command: npm install
-      # Unlock SSH key
-      - run:
-          name: Unlock SSH Key
-          command: echo "$SSH_PASSPHRASE" | ssh-add /root/.ssh/id_rsa
-      # Run Cypress tests
+
       - run:
           name: Run Cypress Tests
-          command: npm test
+          command: npm run cypress:run
