@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run && npx mochawesome-merge ./cypress/results/*.html -o ./cypress/results/output.html && npx marge  ./cypress/results/output.html"
+    "cypress:run": "cypress run"
   },
   "keywords": [],
   "author": "",

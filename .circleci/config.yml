@@ -7,12 +7,10 @@ jobs:
 
     steps:
       - checkout
-
       # Install dependencies
       - run:
           name: Install Dependencies
-          command: npm install
-
+          command: npm install --force
       # Run Cypress tests
       - run:
           name: Run Cypress Tests
