@@ -14,7 +14,10 @@ jobs:
       - run:
           name: Install Dependencies
           command: npm install
-
+      # Unlock SSH key
+      - run:
+          name: Unlock SSH Key
+          command: echo $SSH_PASSPHRASE | ssh-add /root/.ssh/id_rsa
       # Run Cypress tests
       - run:
           name: Run Cypress Tests
