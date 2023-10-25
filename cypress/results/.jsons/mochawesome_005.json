@@ -1,0 +1,106 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2023-10-16T13:58:50.479Z",
+    "end": "2023-10-16T13:58:58.655Z",
+    "duration": 8176,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "d89bee17-b533-4e24-8478-91f04c84fc40",
+      "title": "",
+      "fullFile": "cypress\\integration\\spec-files\\parking-hangarage-charges\\DatePickerAnalysis.js",
+      "file": "cypress\\integration\\spec-files\\parking-hangarage-charges\\DatePickerAnalysis.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "53452dfa-a3e0-4201-8ffa-dddb94062e39",
+          "title": "Parking /Hangarage Charges",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "C8695",
+              "fullTitle": "Parking /Hangarage Charges C8695",
+              "timedOut": null,
+              "duration": 6342,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "Cypress.config('defaultCommandTimeout', 100000);\ncy.get(':nth-child(5) > div > .main-nav__link--with-children').realHover();\ncy.wait(100);\ncy.contains('Live').click();\n// Replace 'desiredDate' with the date you want to select (e.g., '2023-10-15')\n//   cy.selectDateInReactCalendar('2023-10-15');\nlet nextDate = \"13 January 2022\";\n// cy.get('.toggle-date > :nth-child(3)').click();\n// cy.wait(1000);\n// cy.get('.react-calendar__month-view__days >')\n// .not('[disabled]')\n// .each((elem) => {\n//     if (elem.text() === nextDate.toString()) {\n//         elem.click();\n//     }\n// });\n// cy.get('.calendar-container .day[data-date=\"2023-10-15\"]').click({force:true});\n// cy.get('.react-calendar__tile--now abbr[aria-label]').then((li)=>{\n//     li.val('October 14, 2023')\n// })\n// Locate and click on the button to navigate to the previous year\n// cy.get('.react-calendar__navigation__prev-button').click(); // Replace with the correct selector for the previous year button.\n//  Locate and click on the button to navigate to the previous month\n// cy.get('.react-calendar__navigation__prev2-button').click(); // Replace with the correct selector for the previous month button.\n// cy.wait(200);\n// cy.get('.react-datepicker__year-select').select('2023');\n// cy.get('.react-datepicker__month-select').select('9'); // October is 9th month\n// cy.contains('.react-datepicker__day', '15').click();\ncy.get('.tabular-list :nth-child(3)').each(($li, index) => {\n  const test = $li.text();\n  console.log(test);\n  if (test.includes('804080')) {\n    cy.get('.tabular-list .column-item__id-link').eq(index).invoke('removeAttr', 'target').click({\n      force: true\n    });\n  }\n});\ncy.visit('https://colossusqa-fab.i6clouds.com/business-aviation/booking/510a83d7-2605-422c-9c20-e9f1bf3f9d1d');\ncy.get('[data-testid=\"charges-tab\"]').click();\ncy.get('.rcc-tabs__content > [data-testid=\"loader\"]').should('be.visible');\ncy.get('.rcc-tabs__content > [data-testid=\"loader\"]').should('not.exist');\ncy.get('[data-testid=\"header-actions\"]').click();\ncy.get('[data-testid=\"header-recalculate\"]').click();\ncy.get('[data-testid=\"header-actions\"]').click();\ncy.get('.rcc-multi-option-button__menu_item').should('be.visible');\ncy.get('.rcc-multi-option-button__menu_item_text').should('include.text', 'Recalculating');\ncy.get('.rcc-multi-option-button__menu_item_text').should('not.include.text', 'Recalculating');\n//         cy.get('.rcc-multi-option-button__menu_item_text')\n// .then((li)=>{\n//             console.log(li)\n//             if(li.text().includes('Recalculating')){\n//             }\n//         })\n// cy.get('.rcc-multi-option-button__menu_item').each(($li)=>{\n//     console.log($li.text())\n//     const value = $li.text();\n//     if(value.includes('Recalculating')){\n//         cy.get('.rcc-multi-option-button__menu_item_container rcc-multi-option-button__menu_item_container--disabled').should('be.visible');\n//         cy.get('.rcc-multi-option-button__menu_item_disabled').should('not.exist');\n//     }\n// })\nconsole.log(232);\ncy.get('tr td:nth-child(1)').each(($li, index) => {\n  const charge = $li.text();\n  console.log(charge);\n  if (charge.includes('PARK')) {\n    cy.get('tr td:nth-child(17)').eq(index).next().then(res => {\n      const value = res.text();\n      console.log(value);\n      expect(value).to.equal(150.00);\n    });\n  }\n});",
+              "err": {},
+              "uuid": "9b642bef-6de2-425b-aa9c-18c6ff2b87b2",
+              "parentUUID": "53452dfa-a3e0-4201-8ffa-dddb94062e39",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "9b642bef-6de2-425b-aa9c-18c6ff2b87b2"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 6342,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportTitle": "My test report",
+        "reportDir": "cypress\\results\\.jsons",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
