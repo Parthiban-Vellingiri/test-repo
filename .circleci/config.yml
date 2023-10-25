@@ -4,7 +4,8 @@ jobs:
     docker:
       - image: cypress/browsers:chrome67
     working_directory: ~/project
-
+    docker:
+      - image: circleci/node:14
     steps:
       - checkout
       # Install dependencies
@@ -14,10 +15,6 @@ jobs:
       - run:
           name: Install Dependencies
           command: npm install --force
-      - run:
-          name: Start the Application
-          command: npm start
-          background: true
       # Run Cypress tests
       - run:
           name: Run Cypress Tests
