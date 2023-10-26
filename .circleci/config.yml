@@ -1,25 +1,33 @@
-version: 2.1
+version: '2.1'
+orbs:
+  cypress: cypress-io/cypress@3
 jobs:
-  build:
-    docker:
-      - image: cypress/browsers:chrome67
-    working_directory: ~/project
+  install-and-persist:
+    executor: cypress/default
     steps:
-      - checkout
-      # Install dependencies
-      - run:
-          name: npm update
-          command: npm i -g
+      - cypress/install
       - run:
           name: Install Dependencies
           command: npm install --force
-      # Run Cypress tests
-      - run:
-          name: Run Cypress Tests
-          command: npm run cypress:run
-
+      - persist_to_workspace:
+          paths:
+            - .cache/Cypress
+            - project
+          root: ~/
+  run-tests-in-parallel:
+    executor: cypress/default
+    parallelism: 8
+    steps:
+      - attach_workspace:
+          at: ~/
+      - cypress/run-tests:
+          cypress-command: npx cypress run --component --parallel --record
 workflows:
-  version: 2
-  build-and-test:
+  use-my-orb:
     jobs:
-      - build
+      - install-and-persist:
+          name: Install & Persist To Workspace
+      - run-tests-in-parallel:
+          name: Run Tests in Parallel
+          requires:
+            - Install & Persist To Workspace
