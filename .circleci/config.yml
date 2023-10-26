@@ -18,7 +18,7 @@ jobs:
       # Run Cypress tests
       - run:
           name: Run Cypress Tests
-          command: npm run test
+          command: npm run cypress:run
 
 workflows:
   version: 2
