@@ -14,6 +14,12 @@ jobs:
     steps:
       - checkout
       - run: echo "this is the test job"
+      - run:
+          name: NPM Install
+          command: npm install --force
+      - run:
+          name: Test
+          command: npm test
 
 # Orchestrate our job run sequence
 workflows:
