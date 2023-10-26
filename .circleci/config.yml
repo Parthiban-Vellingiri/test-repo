@@ -31,3 +31,4 @@ workflows:
           name: Run Tests in Parallel
           requires:
             - Install & Persist To Workspace
+
